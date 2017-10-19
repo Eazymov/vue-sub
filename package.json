@@ -1,0 +1,52 @@
+{
+  "name": "vue-sub",
+  "version": "0.0.1",
+  "description": "> Simple VueJS plugin",
+  "main": "dist/vue-sub.min.js",
+  "types": "types/index.d.ts",
+  "files": [
+    "src",
+    "dist/*.js",
+    "types/*.d.ts"
+  ],
+  "maintainers": [
+    {
+      "name": "eazymov",
+      "email": "eazymovcode@gmail.com"
+    }
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eazymov/vue-sub.git"
+  },
+  "keywords": [
+    "vuejs",
+    "vue",
+    "sub",
+    "subscribers",
+    "plugin",
+    "javascript",
+    "decorators"
+  ],
+  "author": {
+    "name": "Eazymov",
+    "email": "eazymovcode@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Eazymov/vue-sub/issues"
+  },
+  "homepage": "https://github.com/Eazymov/vue-sub#readme",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "devDependencies": {
+    "ts-loader": "^3.0.3",
+    "typescript": "^2.5.3",
+    "uglifyjs-webpack-plugin": "^1.0.0-beta.3",
+    "webpack": "^3.8.1"
+  }
+}
