@@ -1,4 +1,4 @@
 import VueSub from './vue-sub';
-export { Action, Subscribe, } from './bindings';
+export { Action, Subscribe, Once } from './bindings';
 
 export default VueSub;

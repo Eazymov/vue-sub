@@ -1,4 +1,4 @@
-import { bindSubscribers } from './bindings';
+import { forEach, bindSubscribers } from './bindings';
 
 class VueSub {
   
@@ -11,7 +11,7 @@ class VueSub {
       observers[action] = [];
     }
 
-    newHandlers.forEach((handler: Handler) => {
+    forEach(newHandlers, (handler: Handler) => {
       if (typeof handler !== 'function') {
         throw new TypeError('Provided handler is not a function');
       }
@@ -25,14 +25,15 @@ class VueSub {
   }
 
   public unsubscribe (action: string, ...handlers: Handler[]): boolean {
-    const actionHandlers = this.observers[action];
+    const observers: Observers = this.observers;
+    const actionHandlers: Handler[] = observers[action];
 
     if (actionHandlers === undefined) return false;
 
-    this.observers[action] = actionHandlers.filter(
-      (handler: Handler) => !handlers.includes(handler)
+    observers[action] = actionHandlers.filter(
+      (handler: Handler) => handlers.indexOf(handler) === -1
     );
-    
+
     return true;
   }
   
@@ -58,7 +59,8 @@ class VueSub {
 
     if (!actionHandlers) return false;
 
-    actionHandlers.forEach(
+    forEach(
+      actionHandlers,
       (handler: Handler) => handler(params)
     );
 

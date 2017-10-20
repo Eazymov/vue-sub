@@ -1,5 +1,10 @@
+function forEach (array: any[], handler: AnyFunc): void {
+  for (let i = 0; i < array.length; i++) {
+    handler(array[i], i);
+  }
+}
 
-function createDecorator (component: any, func: any): void {
+function createDecorator (component: any, func: AnyFunc): void {
   const constructor: any = component.constructor;
 
   if (!component.VueSub) {
@@ -13,17 +18,17 @@ function createDecorator (component: any, func: any): void {
   constructor.__decorators__.push(func);
 }
 
-function bindActionToComponent (component: any, action: string, method: string) {
+function bindActionToComponent (component: any, actionType: string, method: string) {
   return createDecorator(component, (component: any): void => {
-    component.methods[method] = function (params: any) {
-      this.$subscriber.fire(action, params); 
+    component.methods[method] = function (params?: any) {
+      this.$subscriber.fire(actionType, params); 
     };
   });
 }
 
-function Action (a: any): any {
-  return function(target: any, fnName: string) {
-    bindActionToComponent(target, a, fnName);
+function Action (actionType: any): any {
+  return function(component: any, method: string) {
+    bindActionToComponent(component, actionType, method);
   }
 }
 
@@ -48,25 +53,28 @@ function Subscribe (action: string): AnyFunc {
   }
 }
 
+function Once () {
+
+}
+
 function bindSubscribers (component: any): boolean {
   if (typeof component.getSubscribers !== 'function') return false; 
   
   const subscribers: AnyFunc[] = component.getSubscribers();
   const $subscriber: any = component.$subscriber;
+  const keys: string[] = Object.keys(subscribers);
   
-  Object
-    .keys(subscribers)
-    .forEach((key: string) => {
-      const handler: AnyFunc = component[key];
-
-      $subscriber.subscribe(subscribers[key], handler);
-    });
+  forEach(keys, (key: string) => {
+    $subscriber.subscribe(subscribers[key], component[key]);
+  });
 
   return delete component.getSubscribers;
 }
 
 export {
+  forEach,
   Action,
   Subscribe,
+  Once,
   bindSubscribers,
 };
