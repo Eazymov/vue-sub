@@ -1,5 +1,8 @@
 # @Eazymov/vue-sub
 
+[![npm](https://img.shields.io/npm/v/vue-sub.svg)](https://www.npmjs.com/package/vue-sub)
+[![License](https://img.shields.io/npm/l/vue-sub.svg)](https://www.npmjs.com/package/vue-sub)
+
 > Simple VueJS plugin
 
 ## Installation
