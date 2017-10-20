@@ -67,7 +67,11 @@ class VueSub {
     return true;
   }
 
-  static install (Vue: any) {
+  static installed: boolean = false;
+
+  static install (Vue: any): void {
+    if (VueSub.installed) return;
+
     Vue.prototype.VueSub = this;
 
     Vue.mixin({
@@ -82,7 +86,7 @@ class VueSub {
       },
       created (): void {
         bindSubscribers(this);
-      }
+      },
     });
   }
 }
