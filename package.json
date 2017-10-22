@@ -1,7 +1,7 @@
 {
   "name": "vue-sub",
   "version": "0.0.6",
-  "description": "Simple VueJS plugin",
+  "description": "Simple observer pattern implementation for VueJS",
   "main": "dist/vue-sub.min.js",
   "types": "types/index.d.ts",
   "files": [
