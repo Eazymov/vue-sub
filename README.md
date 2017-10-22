@@ -83,6 +83,17 @@ const component = {
 }
 ```
 
+If you want to react to an event only once, you can use `$observable.once`
+
+```javascript
+const component = {
+  mounted () {
+    this.$observable.once(actionType, handler);
+    this.$observable.fire(actionType); // fires only once
+  }
+}
+```
+
 ### When using class components and typescript
 
 ```javascript
@@ -106,17 +117,6 @@ export class MyComponent extends Vue {
 
   public created (): void {
     this.actionFoo(params); // -> $observable.fire('foo', params);
-  }
-}
-```
-
-If you want to react to an event only once, you can use `$observable.once`
-
-```javascript
-const component = {
-  mounted () {
-    this.$observable.once(actionType, handler);
-    this.$observable.fire(actionType); // fires only once
   }
 }
 ```
