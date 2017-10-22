@@ -20,7 +20,12 @@ declare interface VueSub {
 }
 
 declare type AnyFunc = (...args: any[]) => void;
-declare type Subscribers = { [key: string]: string };
+declare interface Subscribers {
+  [key: string]: {
+    once: boolean;
+    action: string;
+  };
+}
 declare interface Methods {
   getSubscribers: () => Subscribers;
   [key: string]: AnyFunc;

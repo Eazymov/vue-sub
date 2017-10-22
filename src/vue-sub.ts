@@ -78,10 +78,10 @@ class VueSub {
       beforeCreate (): void {
         const options: any = this.$options;
 
-        if (options.subscriber) {
-          this.$subscriber = options.subscriber;
-        } else if (options.parent && options.parent.$subscriber) {
-          this.$subscriber = options.parent.$subscriber;
+        if (options.observable) {
+          this.$observable = options.observable;
+        } else if (options.parent && options.parent.$observable) {
+          this.$observable = options.parent.$observable;
         }
       },
       created (): void {
