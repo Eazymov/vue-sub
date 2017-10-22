@@ -16,7 +16,7 @@ function Action (actionType: any): any {
   return (component: any, method: string) => {
     return createDecorator(component, (component: any): void => {
       component.methods[method] = function (params?: any) {
-        this.$subscriber.fire(actionType, params); 
+        this.$observable.fire(actionType, params); 
       };
     });
   }
@@ -68,14 +68,14 @@ function bindSubscribers (component: any): boolean {
   if (typeof component.getSubscribers !== 'function') return false; 
   
   const subscribers: AnyFunc[] = component.getSubscribers();
-  const $subscriber: any = component.$subscriber;
+  const $observable: any = component.$observable;
   const keys: string[] = Object.keys(subscribers);
   
   forEach(keys, (key: string) => {
     const { once, action } = subscribers[key];
     const which: string = once ? 'once' : 'subscribe';
 
-    $subscriber[which](action, component[key]);
+    $observable[which](action, component[key]);
   });
 
   return delete component.getSubscribers;
