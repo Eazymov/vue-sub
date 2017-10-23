@@ -55,6 +55,23 @@ const app = new Vue({
 });
 ```
 
+You can create VueSub instance with existing observers
+
+```javascript
+const observable = new VueSub({
+  observers: {
+    'log': [
+      console.log,
+      anotherLogHandler,
+    ],
+    'error': [
+      console.error,
+      anotherErrorHandler,
+    ],
+  },
+});
+```
+
 Using inside the component
 
 ```javascript
