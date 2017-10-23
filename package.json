@@ -26,10 +26,12 @@
     "vuejs",
     "vue",
     "sub",
-    "subscribers",
+    "observer",
+    "observable",
     "plugin",
     "javascript",
-    "decorators"
+    "decorators",
+    "typescript"
   ],
   "author": {
     "name": "Eazymov",
