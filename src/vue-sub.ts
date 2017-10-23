@@ -1,8 +1,55 @@
-import { forEach, bindSubscribers } from './bindings';
+import { isObject, forEach, filter, isValidObservers } from './utils';
+import { bindSubscribers } from './bindings';
 
 class VueSub {
-  
+  /**
+   * Static
+   */
+  static installed: boolean = false;
+
+  static install (Vue: any): void {
+    if (VueSub.installed) return;
+
+    Vue.prototype.VueSub = this;
+
+    Vue.mixin({
+      beforeCreate (): void {
+        const options: any = this.$options;
+
+        if (options.observable) {
+          this.$observable = options.observable;
+        } else if (options.parent && options.parent.$observable) {
+          this.$observable = options.parent.$observable;
+        }
+      },
+      created (): void {
+        bindSubscribers(this);
+      },
+    });
+  }
+
+  /**
+   * Public
+   */
   public observers: Observers = {};
+
+  public constructor (props: any) {
+    if (props === undefined) return;
+
+    if (!isObject(props)) {
+      throw new TypeError('VueSub constructor props is invalid');
+    }
+
+    const observers: Observers = props.observers;
+
+    if (observers === undefined) return;
+
+    if (isValidObservers(observers)) {
+      this.observers = observers;
+    } else {
+      throw new TypeError('Observers is invalid');
+    }
+  }
 
   public subscribe (action: string, ...newHandlers: Handler[]): boolean {
     const observers: Observers = this.observers;
@@ -30,7 +77,8 @@ class VueSub {
 
     if (actionHandlers === undefined) return false;
 
-    observers[action] = actionHandlers.filter(
+    observers[action] = filter(
+      actionHandlers,
       (handler: Handler) => handlers.indexOf(handler) === -1
     );
 
@@ -43,15 +91,6 @@ class VueSub {
       
       return this.removeHandler(action, handler);
     });
-  }
-  
-  private removeHandler (action: string, handler: Handler): boolean {
-    const actionHandlers: Handler[] = this.observers[action];
-    const index: number = actionHandlers.indexOf(handler);
-    
-    this.observers[action].splice(index, 1);
-
-    return true;
   }
 
   public fire (action: string, params?: any): boolean {
@@ -66,28 +105,17 @@ class VueSub {
 
     return true;
   }
+  
+  /**
+   * Private
+   */
+  private removeHandler (action: string, handler: Handler): boolean {
+    const actionHandlers: Handler[] = this.observers[action];
+    const index: number = actionHandlers.indexOf(handler);
+    
+    this.observers[action].splice(index, 1);
 
-  static installed: boolean = false;
-
-  static install (Vue: any): void {
-    if (VueSub.installed) return;
-
-    Vue.prototype.VueSub = this;
-
-    Vue.mixin({
-      beforeCreate (): void {
-        const options: any = this.$options;
-
-        if (options.observable) {
-          this.$observable = options.observable;
-        } else if (options.parent && options.parent.$observable) {
-          this.$observable = options.parent.$observable;
-        }
-      },
-      created (): void {
-        bindSubscribers(this);
-      },
-    });
+    return true;
   }
 }
 

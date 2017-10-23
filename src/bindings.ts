@@ -1,15 +1,24 @@
-function forEach (array: any[], handler: AnyFunc): void {
-  for (let i = 0; i < array.length; i++) {
-    handler(array[i], i);
-  }
-}
+import { forEach } from './utils';
 
 function createDecorator (component: any, func: AnyFunc): void {
   const constructor: any = component.constructor;
-
   constructor.__decorators__ = constructor.__decorators__ || [];
-
   constructor.__decorators__.push(func);
+}
+
+function addSubscriber (subscriber: Subscriber): AnyFunc {
+  return function(component: any, method: string): void {
+    return createDecorator(component, (component: any) => {
+      const methods: Methods = component.methods;
+      const getSubscribers: () => Subscribers = methods.getSubscribers;
+      const subscribers: Subscribers = getSubscribers ? getSubscribers() : {};
+    
+      methods.getSubscribers = (): Subscribers => ({
+        ...subscribers,
+        [method]: subscriber,
+      });
+    });
+  }
 }
 
 function Action (actionType: any): any {
@@ -23,66 +32,37 @@ function Action (actionType: any): any {
 }
 
 function Subscribe (action: string): AnyFunc {
-  return function(component: any, method: string): void {
-    return createDecorator(component, (component: any) => {
-      const methods: Methods = component.methods;
-      const getSubscribers: () => Subscribers = methods.getSubscribers;
-      let existingSubscribers: Subscribers = {};
-
-      if (getSubscribers) {
-        existingSubscribers = getSubscribers();
-      }
-
-      methods.getSubscribers = (): Subscribers => {
-        return {
-          ...existingSubscribers,
-          [method]: { once: false, action },
-        };
-      }
-    });
-  }
+  return addSubscriber({
+    once: false,
+    action,
+  });
 }
 
 function Once (action: string): AnyFunc {
-  return function(component: any, method: string): void {
-    return createDecorator(component, (component: any) => {
-      const methods: Methods = component.methods;
-      const getSubscribers: () => Subscribers = methods.getSubscribers;
-      let existingSubscribers: Subscribers = {};
-
-      if (getSubscribers) {
-        existingSubscribers = getSubscribers();
-      }
-
-      methods.getSubscribers = (): Subscribers => {
-        return {
-          ...existingSubscribers,
-          [method]: { once: true, action },
-        };
-      }
-    });
-  }
+  return addSubscriber({
+    once: true,
+    action,
+  });
 }
 
 function bindSubscribers (component: any): boolean {
   if (typeof component.getSubscribers !== 'function') return false; 
   
-  const subscribers: AnyFunc[] = component.getSubscribers();
+  const subscribers: Subscribers = component.getSubscribers();
   const $observable: any = component.$observable;
-  const keys: string[] = Object.keys(subscribers);
+  const methods: string[] = Object.keys(subscribers);
   
-  forEach(keys, (key: string) => {
-    const { once, action } = subscribers[key];
+  forEach(methods, (method: string) => {
+    const { once, action } = subscribers[method];
     const which: string = once ? 'once' : 'subscribe';
 
-    $observable[which](action, component[key]);
+    $observable[which](action, component[method]);
   });
 
   return delete component.getSubscribers;
 }
 
 export {
-  forEach,
   Action,
   Subscribe,
   Once,
