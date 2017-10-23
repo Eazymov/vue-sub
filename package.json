@@ -1,6 +1,6 @@
 {
   "name": "vue-sub",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Simple observer pattern implementation for VueJS",
   "main": "dist/vue-sub.min.js",
   "types": "types/index.d.ts",
