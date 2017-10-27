@@ -1,33 +1,38 @@
 import { forEach } from './utils';
 
-function createDecorator (component: any, func: AnyFunc): void {
-  const constructor: any = component.constructor;
+function createDecorator (object: any, factory: AnyFunc): any {
+  const constructor: any = object.constructor;
   constructor.__decorators__ = constructor.__decorators__ || [];
-  constructor.__decorators__.push(func);
+  constructor.__decorators__.push(factory);
 }
 
 function addSubscriber (subscriber: Subscriber): AnyFunc {
-  return function(component: any, method: string): void {
-    return createDecorator(component, (component: any) => {
+  return function(object: any, prop: string, descriptor: any): void {
+    console.log(object, prop, descriptor);
+    return createDecorator(object, (component: any) => {
       const methods: Methods = component.methods;
       const getSubscribers: () => Subscribers = methods.getSubscribers;
       const subscribers: Subscribers = getSubscribers ? getSubscribers() : {};
     
       methods.getSubscribers = (): Subscribers => ({
         ...subscribers,
-        [method]: subscriber,
+        [prop]: subscriber,
       });
     });
   }
 }
 
 function Action (actionType: any): any {
-  return (component: any, method: string) => {
-    return createDecorator(component, (component: any): void => {
-      component.methods[method] = function (params?: any) {
+  return (object: any, prop: string, descriptor: any) => {
+    createDecorator(object, (component: any): void => {
+      component.methods[prop] = function (params?: any) {
         this.$observable.fire(actionType, params); 
       };
     });
+
+    return {
+      value: function() {},
+    };
   }
 }
 
