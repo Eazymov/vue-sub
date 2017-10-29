@@ -1,33 +1,34 @@
 declare module 'vue-sub';
 
-declare type Handler = (...args: any[]) => any;
+import { PluginFunction } from 'vue';
 
-declare type Subscribe = (action: string, ...handlers: Handler[]) => boolean;
-declare type Unsubscribe = (action: string, ...handlers: Handler[]) => boolean;
-declare type Once = (action: string, handler: Handler[]) => boolean;
-declare type Fire = (action: string, params?: any) => boolean;
+type Handler = (...args: any[]) => any;
 
-declare interface Observers {
+interface Observers {
   [key: string]: Handler[];
 }
 
-declare interface VueSub {
+type Subscribe = (action: string, ...handlers: Handler[]) => boolean;
+type Unsubscribe = (action: string, ...handlers: Handler[]) => boolean;
+type Once = (action: string, handler: Handler[]) => boolean;
+type Fire = (action: string, params?: any) => boolean;
+
+interface VueSuboptions {
   observers: Observers;
-  subscribe: Subscribe;
-  unsubscribe: Unsubscribe;
-  once: Once;
-  fire: Fire;
 }
 
-declare type AnyFunc = (...args: any[]) => void;
-declare interface Subscriber {
-  once: boolean;
-  action: string;
+export default class VueSub {
+  constructor (options?: VueSuboptions);
+
+  static installed: boolean;
+  static install: PluginFunction<never>;
+
+  public observers: Observers;
+  public subscribe: Subscribe;
+  public unsubscribe: Unsubscribe;
+  public once: Once;
+  public fire: Fire;
+
+  private removeHandler: (action: string, handler: Handler) => boolean;
 }
-declare interface Subscribers {
-  [key: string]: Subscriber;
-}
-declare interface Methods {
-  getSubscribers: () => Subscribers;
-  [key: string]: AnyFunc;
-}
+

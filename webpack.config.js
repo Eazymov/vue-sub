@@ -1,22 +1,20 @@
-const path = require("path");
+const path = require('path');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.ts',
+  entry: './lib/vue-sub.js',
   output: {
     filename: 'vue-sub.min.js',
-    path: path.resolve(__dirname, 'dist'),
-    library: 'vue-sub',
-    libraryTarget: 'umd',
+    path: path.resolve(__dirname, 'lib'),
   },
   resolve: {
-    extensions: ['.ts'],
+    extensions: ['.js'],
   },
   module: {
     rules: [
       {
-        test: /\.ts$/,
-        loader: 'ts-loader',
+        test: /\.js$/,
+        loader: 'babel-loader',
       },
     ],
   },
