@@ -13,12 +13,12 @@ type Unsubscribe = (action: string, ...handlers: Handler[]) => boolean;
 type Once = (action: string, handler: Handler[]) => boolean;
 type Fire = (action: string, params?: any) => boolean;
 
-interface VueSuboptions {
+interface VueSubOptions {
   observers: Observers;
 }
 
 export default class VueSub {
-  constructor (options?: VueSuboptions);
+  constructor (options?: VueSubOptions);
 
   static installed: boolean;
   static install: PluginFunction<never>;
