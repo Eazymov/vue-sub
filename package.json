@@ -5,8 +5,8 @@
   "main": "lib/vue-sub.js",
   "types": "types/index.d.ts",
   "files": [
+    "src/*.js",
     "lib/*.js",
-    "dist/*.js",
     "types/*.d.ts"
   ],
   "maintainers": [
@@ -16,7 +16,8 @@
     }
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tsc --watch",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",

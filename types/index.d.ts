@@ -1,22 +1,10 @@
 declare module 'vue-sub';
 
-import { PluginFunction } from 'vue';
+import VueSub from '../src/constructor';
 
-type Handler = (...args: any[]) => any;
+export default VueSub;
 
-interface Observers {
-  [key: string]: Handler[];
-}
-
-type Subscribe = (action: string, ...handlers: Handler[]) => boolean;
-type Unsubscribe = (action: string, ...handlers: Handler[]) => boolean;
-type Once = (action: string, handler: Handler[]) => boolean;
-type Fire = (action: string, params?: any) => boolean;
-
-interface VueSubOptions {
-  observers: Observers;
-}
-
+/*
 export default class VueSub {
   constructor (options?: VueSubOptions);
 
@@ -24,11 +12,12 @@ export default class VueSub {
   static install: PluginFunction<never>;
 
   public observers: Observers;
-  public subscribe: Subscribe;
-  public unsubscribe: Unsubscribe;
-  public once: Once;
-  public fire: Fire;
 
-  private removeHandler: (action: string, handler: Handler) => boolean;
+  public subscribe (action: string, ...handlers: Handler[]): boolean;
+  public unsubscribe (action: string, ...handlers: Handler[]): boolean;
+  public once (action: string, handler: Handler): boolean;
+  public fire (action: string, params?: any): boolean;
+
+  private removeHandler (action: string, handler: Handler): boolean;
 }
-
+*/
