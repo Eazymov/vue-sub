@@ -5,7 +5,7 @@ module.exports = {
   entry: './lib/vue-sub.js',
   output: {
     filename: 'vue-sub.min.js',
-    path: path.resolve(__dirname, 'lib'),
+    path: path.resolve(__dirname, 'dist'),
   },
   resolve: {
     extensions: ['.js'],

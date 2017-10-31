@@ -4,8 +4,8 @@ export { Action, Subscribe, Once } from './bindings';
 
 declare global {
   interface Window {
-    Vue: Vue;
-    VueSub: VueSub;
+    Vue: typeof Vue;
+    VueSub: typeof VueSub;
   }
 }
 

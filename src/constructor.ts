@@ -1,20 +1,24 @@
+import Vue, { ComponentOptions } from 'vue';
 import { isObject, forEach, filter, isValidObservers } from './utils';
 import { bindSubscribers } from './bindings';
+
+const Readonly: Decorator = (target: any, prop: string, descriptor: Descriptor) => {
+  descriptor.writable = false;
+}
 
 class VueSub {
   /**
    * Static
    */
+  @Readonly
   public static installed = false;
     
-  public static install (Vue: any) {
+  public static install (vm: typeof Vue) {
     if (VueSub.installed) return;
   
-    Vue.prototype.VueSub = this;
-  
-    Vue.mixin({
+    vm.mixin({
       beforeCreate (): void {
-        const options = this.$options;
+        const options: ComponentOptions<Vue> = this.$options;
   
         if (options.observable) {
           this.$observable = options.observable;
@@ -121,6 +125,5 @@ class VueSub {
     }
   }
 }
-
 
 export default VueSub;
