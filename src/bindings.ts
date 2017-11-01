@@ -29,7 +29,7 @@ const Once = (action: string) => {
   })
 }
 
-const Action = (action: string): Decorator => (
+const Action = (action: string): any => (
   target: Vue,
   prop: string,
   descriptor: Descriptor,
