@@ -2,15 +2,10 @@ import Vue, { ComponentOptions } from 'vue';
 import { isObject, forEach, filter, isValidObservers } from './utils';
 import { bindSubscribers } from './bindings';
 
-const Readonly: Decorator = (target: any, prop: string, descriptor: Descriptor) => {
-  descriptor.writable = false;
-}
-
 class VueSub {
   /**
    * Static
    */
-  @Readonly
   public static installed = false;
     
   public static install (vm: typeof Vue) {

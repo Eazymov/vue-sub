@@ -2,6 +2,7 @@
   "compilerOptions": {
     "outDir": "lib",
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "allowSyntheticDefaultImports": true,
     "module": "es2015",
     "target": "ESNext",

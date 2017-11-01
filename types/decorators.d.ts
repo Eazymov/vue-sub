@@ -1,3 +1,3 @@
-export type Action = (action: string) => Decorator;
-export type Subscribe = (action: string) => Decorator;
-export type Once = (action: string) => Decorator;
+export type Action = (action: string) => PropertyDecorator;
+export type Subscribe = (action: string) => PropertyDecorator;
+export type Once = (action: string) => PropertyDecorator;

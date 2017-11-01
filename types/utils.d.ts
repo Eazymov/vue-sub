@@ -31,12 +31,6 @@ declare interface Descriptor {
   initializer?: (...args: any[]) => any;
 }
 
-declare type Decorator = (
-  target: any,
-  property: string|symbol,
-  descriptor: Descriptor,
-) => void;
-
 interface VueSubOptions {
   observers?: Observers;
 }
