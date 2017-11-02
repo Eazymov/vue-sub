@@ -1,3 +1,5 @@
-export type Action = (action: string) => PropertyDecorator;
-export type Subscribe = (action: string) => PropertyDecorator;
-export type Once = (action: string) => PropertyDecorator;
+import { ActionType } from './options';
+
+export type Action = (action: ActionType) => PropertyDecorator;
+export type Subscribe = (action: ActionType) => MethodDecorator;
+export type Once = (action: ActionType) => MethodDecorator;

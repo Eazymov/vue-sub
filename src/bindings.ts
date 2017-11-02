@@ -2,9 +2,15 @@ import Vue from 'vue';
 import VueSub from './constructor';
 import { createDecorator } from 'vue-class-component';
 import { forEach } from './utils';
+import {
+  ActionType,
+  Subscriber,
+  Methods,
+  Subscribers,
+} from '../types';
 
-const addSubscriber = (subscriber: Subscriber) => {
-  return createDecorator((target, prop: string) => {
+const addSubscriber = (subscriber: Subscriber): MethodDecorator => {
+  return createDecorator((target, prop: string): void => {
     const methods: Methods = target.methods;
     const getSubscribers: () => Subscribers = methods.getSubscribers;
     const subscribers: Subscribers = getSubscribers ? getSubscribers() : {};
@@ -15,24 +21,24 @@ const addSubscriber = (subscriber: Subscriber) => {
   });
 }
 
-const Subscribe = (action: string) => {
+const Subscribe = (action: ActionType): MethodDecorator => {
   return addSubscriber({
     once: false,
     action,
-  })
+  });
 }
 
-const Once = (action: string) => {
+const Once = (action: ActionType): MethodDecorator => {
   return addSubscriber({
     once: true,
     action,
-  })
+  });
 }
 
-const Action = (action: string): any => (
+const Action = (action: ActionType): PropertyDecorator => (
   target: Vue,
   prop: string,
-  descriptor: Descriptor,
+  descriptor: PropertyDescriptor = {},
 ): void => {
   delete descriptor.initializer;
   descriptor.value = function () {};

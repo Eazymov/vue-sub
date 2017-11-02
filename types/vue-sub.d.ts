@@ -1,4 +1,5 @@
 import { PluginFunction } from 'vue';
+import { VueSubOptions, Observers, Handler } from './options';
 
 export default class VueSub {
   constructor (options?: VueSubOptions);
@@ -14,4 +15,5 @@ export default class VueSub {
   public fire (action: string, params?: any): boolean;
 
   private removeHandler (action: string, handler: Handler): boolean;
+  private setObservers (observers: Observers): void;
 }

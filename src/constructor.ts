@@ -1,11 +1,13 @@
 import Vue, { ComponentOptions } from 'vue';
 import { isObject, forEach, filter, isValidObservers } from './utils';
 import { bindSubscribers } from './bindings';
+import { VueSubOptions, Observers, Handler, } from '../types';
 
 class VueSub {
   /**
-   * Static
+   * Public static methods
    */
+
   public static installed = false;
     
   public static install (vm: typeof Vue) {
@@ -27,11 +29,16 @@ class VueSub {
     });
   }
 
+  /**
+   * Public properties
+   */
+
   public observers: Observers = {};
 
   /**
-   * Public
+   * Public methods
    */
+
   public constructor (props: VueSubOptions = {}) {
     if (!isObject(props)) {
       throw new TypeError('VueSub constructor props is invalid');
@@ -70,7 +77,7 @@ class VueSub {
 
     observers[action] = filter(
       actionHandlers,
-      (handler) => handlers.indexOf(handler) === -1
+      (handler: Handler) => handlers.indexOf(handler) === -1
     );
 
     return true;
@@ -97,6 +104,10 @@ class VueSub {
     return true;
   }
 
+  /**
+   * Private methods
+   */
+
   private removeHandler (action: string, handler: Handler): boolean {
     const observers: Observers = this.observers;
     const actionHandlers: Handler[] = observers[action];
@@ -108,11 +119,6 @@ class VueSub {
   }
 
   private setObservers (observers: Observers): void {
-    if (observers === undefined) {
-      this.observers;
-      return;
-    }
-  
     if (isValidObservers(observers)) {
       this.observers = observers;
     } else {

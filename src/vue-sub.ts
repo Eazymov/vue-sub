@@ -16,5 +16,3 @@ if (window) {
    window.Vue.use(VueSub);
  }
 }
-
-export default VueSub;

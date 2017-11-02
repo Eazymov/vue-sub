@@ -1,3 +1,7 @@
+import { Observers, Handler, } from '../types';
+
+type ForEachHandler = (element?: any, index?: number) => any;
+type FilterHandler = (element?: any, index?: number) => boolean;
 
 const isObject = (object: any): boolean => {
   return typeof object === 'object' && !object.reduce;
@@ -55,4 +59,4 @@ export {
   forEach,
   filter,
   every,
-}
+};

@@ -2,7 +2,7 @@
   "name": "vue-sub",
   "version": "0.0.8",
   "description": "Simple observer pattern implementation for VueJS",
-  "main": "lib/vue-sub.js",
+  "main": "lib/vue-sub.common.js",
   "types": "types/index.d.ts",
   "files": [
     "src/*.js",
@@ -17,14 +17,14 @@
   ],
   "scripts": {
     "dev": "tsc --watch",
-    "build": "webpack"
+    "build": "webpack",
+    "tests": "babel-node spec/run.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Eazymov/vue-sub.git"
   },
   "keywords": [
-    "vuejs",
     "vue",
     "sub",
     "observer",
@@ -48,9 +48,11 @@
   },
   "devDependencies": {
     "babel": "^6.23.0",
+    "babel-cli": "6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
+    "jasmine": "^2.8.0",
     "ts-loader": "^3.0.3",
     "typescript": "^2.5.3",
     "uglifyjs-webpack-plugin": "^1.0.0-beta.3",

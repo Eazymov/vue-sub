@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "outDir": "lib",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "allowSyntheticDefaultImports": true,
@@ -17,14 +18,5 @@
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true
-  },
-  "exclude": [
-    "node_modules",
-    "webpack.config.js",
-    "types/test"
-  ],
-  "include": [
-    "types",
-    "src"
-  ]
+  }
 }
