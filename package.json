@@ -18,7 +18,8 @@
   "scripts": {
     "dev": "tsc --watch",
     "build": "webpack",
-    "tests": "babel-node spec/run.js"
+    "test": "babel-node spec/run.js",
+    "test:types": "tsc -p types/test/tsconfig.json"
   },
   "repository": {
     "type": "git",
@@ -53,6 +54,7 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "jasmine": "^2.8.0",
+    "nightwatch": "^0.9.16",
     "ts-loader": "^3.0.3",
     "typescript": "^2.5.3",
     "uglifyjs-webpack-plugin": "^1.0.0-beta.3",

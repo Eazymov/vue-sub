@@ -2,14 +2,12 @@
   "compilerOptions": {
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
     "allowSyntheticDefaultImports": true,
     "module": "es2015",
     "target": "ESNext",
     "lib": ["es7", "dom"],
+    "strict": true,
     "sourceMap": false,
-    "allowJs": true,
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
@@ -18,5 +16,8 @@
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true
-  }
+  },
+  "files": [
+    "./index.ts"
+  ]
 }
