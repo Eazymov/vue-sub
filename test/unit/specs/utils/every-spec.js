@@ -1,4 +1,4 @@
-import { every } from '../../lib/utils';
+import { every } from 'lib/utils';
 
 describe('every', function () {
   

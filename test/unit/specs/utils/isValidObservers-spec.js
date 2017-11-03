@@ -1,4 +1,4 @@
-import { isValidObservers } from '../../lib/utils';
+import { isValidObservers } from 'lib/utils';
 
 describe('isValidObservers', function () {
 

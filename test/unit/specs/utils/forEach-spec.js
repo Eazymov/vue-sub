@@ -1,4 +1,4 @@
-import { forEach } from '../../lib/utils';
+import { forEach } from 'lib/utils';
 
 describe('forEach', function () {
   

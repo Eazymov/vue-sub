@@ -2,7 +2,7 @@
   "name": "vue-sub",
   "version": "0.0.8",
   "description": "Simple observer pattern implementation for VueJS",
-  "main": "lib/vue-sub.common.js",
+  "main": "lib/vue-sub.js",
   "types": "types/index.d.ts",
   "files": [
     "src/*.js",
@@ -17,9 +17,11 @@
   ],
   "scripts": {
     "dev": "tsc --watch",
-    "build": "webpack",
-    "test": "babel-node spec/run.js",
-    "test:types": "tsc -p types/test/tsconfig.json"
+    "build": "tsc && webpack",
+    "test": "npm run test:types && npm run test:unit && npm run test:e2e",
+    "test:types": "tsc -p test/types/tsconfig.json",
+    "test:unit": "babel-node test/unit/runner.js",
+    "test:e2e": "node test/e2e/runner.js"
   },
   "repository": {
     "type": "git",
@@ -52,13 +54,19 @@
     "babel-cli": "6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
+    "babel-plugin-module-alias": "^1.6.0",
     "babel-preset-env": "^1.6.1",
+    "chromedriver": "^2.33.2",
+    "cross-spawn": "^5.1.0",
+    "http-server": "^0.10.0",
     "jasmine": "^2.8.0",
     "nightwatch": "^0.9.16",
+    "selenium-server": "^3.6.0",
     "ts-loader": "^3.0.3",
     "typescript": "^2.5.3",
     "uglifyjs-webpack-plugin": "^1.0.0-beta.3",
-    "webpack": "^3.8.1"
+    "webpack": "^3.8.1",
+    "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {
     "vue": "^2.5.2",

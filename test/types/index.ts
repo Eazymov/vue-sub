@@ -1,5 +1,5 @@
 import Vue, { Component } from 'vue';
-import VueSub, { Action, Subscribe, Once } from '../index';
+import VueSub, { Action, Subscribe, Once } from 'types';
 
 const actions = {
   LOG: 'LOG',
@@ -59,7 +59,7 @@ class ClassComponent extends Vue {
   }
 }
 
-const test = new ClassComponent();
+const test: ClassComponent = new ClassComponent();
 
 test.raiseError(new Error('Some Error'));
 
@@ -67,7 +67,7 @@ test.raiseError(new Error('Some Error'));
  * Creating vue instance
  */
 
-const observable = new VueSub({
+const observable: VueSub = new VueSub({
   observers: {
     [actions.LOG]: [
       console.log,

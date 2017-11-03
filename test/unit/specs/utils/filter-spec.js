@@ -1,4 +1,4 @@
-import { filter } from '../../lib/utils';
+import { filter } from 'lib/utils';
 
 describe('filter', function () {
   

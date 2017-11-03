@@ -1,15 +1,22 @@
 const path = require('path');
+const nodeExternals = require('webpack-node-externals');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-  entry: './lib/vue-sub.js',
+  entry: './lib/index.js',
   output: {
     filename: 'vue-sub.min.js',
     path: path.resolve(__dirname, 'dist'),
+    /*library: "VueSub",
+    libraryTarget: "var"*/
   },
   resolve: {
     extensions: ['.js'],
   },
+  /*target: 'node',
+  externals: [
+    nodeExternals(),
+  ],*/
   module: {
     rules: [
       {

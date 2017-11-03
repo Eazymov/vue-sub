@@ -1,4 +1,4 @@
-import { isArray } from '../../lib/utils';
+import { isArray } from 'lib/utils';
 
 describe('isArray', function () {
 

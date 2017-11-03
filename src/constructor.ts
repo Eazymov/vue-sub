@@ -1,7 +1,7 @@
 import Vue, { ComponentOptions } from 'vue';
 import { isObject, forEach, filter, isValidObservers } from './utils';
 import { bindSubscribers } from './bindings';
-import { VueSubOptions, Observers, Handler, } from '../types';
+import { VueSubOptions, Observers, Handler, } from 'types';
 
 class VueSub {
   /**

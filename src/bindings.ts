@@ -7,9 +7,9 @@ import {
   Subscriber,
   Methods,
   Subscribers,
-} from '../types';
+} from 'types';
 
-const addSubscriber = (subscriber: Subscriber): MethodDecorator => {
+const addSubscriber = (subscriber: Subscriber) => {
   return createDecorator((target, prop: string): void => {
     const methods: Methods = target.methods;
     const getSubscribers: () => Subscribers = methods.getSubscribers;
@@ -21,21 +21,21 @@ const addSubscriber = (subscriber: Subscriber): MethodDecorator => {
   });
 }
 
-const Subscribe = (action: ActionType): MethodDecorator => {
+const Subscribe = (action: ActionType) => {
   return addSubscriber({
     once: false,
     action,
   });
 }
 
-const Once = (action: ActionType): MethodDecorator => {
+const Once = (action: ActionType) => {
   return addSubscriber({
     once: true,
     action,
   });
 }
 
-const Action = (action: ActionType): PropertyDecorator => (
+const Action = (action: ActionType) => (
   target: Vue,
   prop: string,
   descriptor: PropertyDescriptor = {},

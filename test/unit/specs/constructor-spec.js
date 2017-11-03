@@ -1,4 +1,4 @@
-import VueSub from '../../lib/constructor';
+import VueSub from 'lib/constructor';
 
 describe('VueSub', function () {
   const instance = new VueSub();

@@ -3,11 +3,16 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
     "module": "es2015",
     "target": "ESNext",
     "lib": ["es7", "dom"],
+    "paths": {
+      "types": ["../../types"]
+    },
     "strict": true,
     "sourceMap": false,
+    "noEmit": true,
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,

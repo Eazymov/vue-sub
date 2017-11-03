@@ -1,4 +1,4 @@
-import { isObject } from '../../lib/utils';
+import { isObject } from 'lib/utils';
 
 describe('isObject', function () {
 

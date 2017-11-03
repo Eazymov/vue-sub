@@ -1,4 +1,4 @@
-import { Observers, Handler, } from '../types';
+import { Observers, Handler, } from 'types';
 
 type ForEachHandler = (element?: any, index?: number) => any;
 type FilterHandler = (element?: any, index?: number) => boolean;

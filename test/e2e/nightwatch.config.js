@@ -1,5 +1,5 @@
-{
-  "src_folders" : ["tests/e2e"],
+module.exports = {
+  "src_folders" : ["test/e2e/specs"],
   "output_folder" : "reports",
   "custom_commands_path" : "",
   "custom_assertions_path" : "",
@@ -7,14 +7,14 @@
   "globals_path" : "",
 
   "selenium" : {
-    "start_process" : false,
-    "server_path" : "",
+    "start_process" : true,
+    "server_path" : require('selenium-server').path,
     "log_path" : "",
     "port" : 4444,
     "cli_args" : {
-      "webdriver.chrome.driver" : "",
-      "webdriver.gecko.driver" : "",
-      "webdriver.edge.driver" : ""
+      "webdriver.chrome.driver" : require('chromedriver').path,
+      // "webdriver.gecko.driver" : "",
+      // "webdriver.edge.driver" : ""
     }
   },
 
@@ -29,14 +29,16 @@
         "path" : ""
       },
       "desiredCapabilities": {
-        "browserName": "firefox",
+        "browserName": "chrome",
         "marionette": true
       }
     },
 
     "chrome" : {
       "desiredCapabilities": {
-        "browserName": "chrome"
+        "browserName": "chrome",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true
       }
     },
 
@@ -46,4 +48,4 @@
       }
     }
   }
-}
+};

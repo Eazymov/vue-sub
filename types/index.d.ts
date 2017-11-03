@@ -2,6 +2,8 @@ import './vue';
 import VueSub from './vue-sub';
 import { Action, Subscribe, Once } from './decorators';
 
+declare module "Types";
+
 export {
   ActionType,
   Handler,
