@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
-  <title>e2e test</title>
+  <title>e2e test: Object literal</title>
 </head>
 <body>
   <div id="root">
-    <button id="button" @click="changeText('Clicked')">{{ text }}</button>
+    <button id="button" @click="handleClick">{{ active }}</button>
   </div>
 
   <script src="../../../node_modules/vue/dist/vue.min.js"></script>
@@ -21,20 +21,20 @@
       el: '#root',
 
       data: () => ({
-        text: '',
+        active: false,
       }),
 
       observable,
 
       methods: {
-        changeText (text) {
-          this.$observable.fire('click', text);
+        handleClick () {
+          this.$observable.fire('click');
         },
       },
 
       created () {
-        this.$observable.subscribe('click', (text) => {
-          this.text = text;
+        this.$observable.subscribe('click', () => {
+          this.active = !this.active;
         });
       },
     });

@@ -7,8 +7,11 @@
     }]
   ],
   "plugins": [
-    ["module-alias", [
-      { "src": "./lib", "expose": "lib" }
-    ]]
+    ["module-resolver", {
+      "alias": {
+        "project": "./",
+        "lib": "./lib"
+      }
+    }]
   ]
 }

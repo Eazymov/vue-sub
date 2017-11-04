@@ -1,19 +1,20 @@
 import { PluginFunction } from 'vue';
-import { VueSubOptions, Observers, Handler } from './options';
+import { ActionType, VueSubOptions, Observers, Handler } from './options';
 
-export default class VueSub {
-  constructor (options?: VueSubOptions);
+export interface VueSub {
+  observers: Observers;
 
-  static installed: boolean;
-  static install: PluginFunction<never>;
-
-  public observers: Observers;
-
-  public subscribe (action: string, ...handlers: Handler[]): boolean;
-  public unsubscribe (action: string, ...handlers: Handler[]): boolean;
-  public once (action: string, handler: Handler): boolean;
-  public fire (action: string, params?: any): boolean;
-
-  private removeHandler (action: string, handler: Handler): boolean;
-  private setObservers (observers: Observers): void;
+  subscribe (action: ActionType, handler: Handler): boolean;
+  unsubscribe (action: ActionType, handler: Handler): boolean;
+  once (action: ActionType, handler: Handler): boolean;
+  fire (action: ActionType, params?: any): boolean;
 }
+
+export interface VueSubConstructor<VS extends VueSub = VueSub> {
+  new (options?: VueSubOptions): any;
+
+  installed: boolean;
+  install: PluginFunction<never>;
+}
+
+export const VueSub: VueSubConstructor;

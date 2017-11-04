@@ -8,7 +8,7 @@
     "target": "ESNext",
     "lib": ["es7", "dom"],
     "paths": {
-      "types": ["../../types"]
+      "project": ["../../"]
     },
     "strict": true,
     "sourceMap": false,
@@ -16,9 +16,6 @@
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true
   },

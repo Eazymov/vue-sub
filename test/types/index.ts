@@ -1,5 +1,5 @@
 import Vue, { Component } from 'vue';
-import VueSub, { Action, Subscribe, Once } from 'types';
+import VueSub, { Action, Subscribe, Once } from 'project';
 
 const actions = {
   LOG: 'LOG',
@@ -9,7 +9,7 @@ const actions = {
 Vue.use(VueSub);
 
 /**
- * Creating vue component instance via object literal
+ * Creating vue component instance via `object literal`
  */
 
 const component: Component = {

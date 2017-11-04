@@ -31,10 +31,6 @@ describe('VueSub', function () {
     expect(typeof instance.fire).toBe('function');
   });
 
-  it('typeof instance method `removeHandler` should be `function`', function () {
-    expect(typeof instance.removeHandler).toBe('function');
-  });
-
   it('typeof instance method `setObservers` should be `function`', function () {
     expect(typeof instance.setObservers).toBe('function');
   });

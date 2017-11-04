@@ -1,7 +1,11 @@
 import Vue, { ComponentOptions } from 'vue';
-import { isObject, forEach, filter, isValidObservers } from './utils';
-import { bindSubscribers } from './bindings';
-import { VueSubOptions, Observers, Handler, } from 'types';
+import {
+  isObject,
+  forEach,
+  isValidObservers,
+  bindSubscribers
+} from './utils';
+import { ActionType, VueSubOptions, Observers, Handler, } from 'types';
 
 class VueSub {
   /**
@@ -49,49 +53,50 @@ class VueSub {
     this.setObservers(observers);
   }
 
-  public subscribe (action: string, ...newHandlers: Handler[]): boolean {
+  public subscribe (action: ActionType, handler: Handler): boolean {
     const observers: Observers = this.observers;
 
     if (!observers[action]) {
       observers[action] = [];
     }
 
-    forEach(newHandlers, (handler: Handler): void => {
-      if (typeof handler !== 'function') {
-        throw new TypeError('Provided handler is not a function');
-      }
-      
-      if (observers[action].indexOf(handler) === -1) {
-        observers[action].push(handler);
-      }
-    });
+    if (typeof handler !== 'function') {
+      throw new TypeError('Provided handler is not a function');
+    }
+    
+    if (observers[action].indexOf(handler) !== -1) return false;
+
+    observers[action].push(handler);
     
     return true;
   }
 
-  public unsubscribe (action: string, ...handlers: Handler[]): boolean {
+  public unsubscribe (action: ActionType, handler: Handler): boolean {
     const observers: Observers = this.observers;
     const actionHandlers: Handler[] = observers[action];
 
     if (actionHandlers === undefined) return false;
 
-    observers[action] = filter(
-      actionHandlers,
-      (handler: Handler) => handlers.indexOf(handler) === -1
-    );
+    const index: number = actionHandlers.indexOf(handler);
+
+    if (index === -1) return false;
+
+    observers[action].splice(index, 1);
 
     return true;
   }
   
-  public once (action: string, handler: Handler): boolean {
-    return this.subscribe(action, (params: any): boolean => {
+  public once (action: ActionType, handler: Handler): boolean {
+    const selfDestroying = (params: any): boolean => {
       handler(params);
       
-      return this.removeHandler(action, handler);
-    });
+      return this.unsubscribe(action, selfDestroying);
+    }
+
+    return this.subscribe(action, selfDestroying);
   }
 
-  public fire (action: string, params: any): boolean {
+  public fire (action: ActionType, params: any): boolean {
     const actionHandlers: Handler[] = this.observers[action];
 
     if (!actionHandlers) return false;
@@ -107,16 +112,6 @@ class VueSub {
   /**
    * Private methods
    */
-
-  private removeHandler (action: string, handler: Handler): boolean {
-    const observers: Observers = this.observers;
-    const actionHandlers: Handler[] = observers[action];
-    const index: number = actionHandlers.indexOf(handler);
-    
-    observers[action].splice(index, 1);
-  
-    return true;
-  }
 
   private setObservers (observers: Observers): void {
     if (isValidObservers(observers)) {

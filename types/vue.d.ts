@@ -3,7 +3,7 @@
  */
 
 import Vue from 'vue';
-import VueSub from './vue-sub';
+import { VueSub } from './vue-sub';
 
 declare module "vue-sub";
 
