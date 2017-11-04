@@ -1,11 +1,15 @@
+sudo: required
+
+dist: trusty
+
 language: node_js
 
 node_js:
  - "7"
 
-sudo: required
-
-dist: trusty
+cache:
+  directories:
+   - "node_modules"
 
 before_install:
  - export CHROME_BIN=/usr/bin/google-chrome
@@ -18,5 +22,5 @@ before_install:
 
 script:
  - jdk_switcher use oraclejdk8
- - test
+ - npm test
  
