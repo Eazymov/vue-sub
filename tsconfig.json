@@ -21,9 +21,7 @@
     "noUnusedLocals": true
   },
   "exclude": [
-    "node_modules",
-    "webpack.config.js",
-    "types/test"
+    "node_modules"
   ],
   "include": [
     "types",
