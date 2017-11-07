@@ -1,6 +1,6 @@
 {
   "name": "vue-sub",
-  "version": "0.0.8",
+  "version": "1.1.0",
   "description": "Simple observer pattern implementation for VueJS",
   "main": "lib/vue-sub.js",
   "types": "types/index.d.ts",
@@ -17,13 +17,13 @@
   ],
   "scripts": {
     "dev": "tsc --watch",
-    "build": "npm run build:prod && npm run build:test",
+    "build": "tsc && npm run build:prod && npm run build:test",
     "build:prod": "tsc && webpack --config config/prod.config.js",
     "build:test": "webpack --config config/test.config.js",
     "test": "npm run test:types && npm run test:unit && npm run test:e2e",
     "test:types": "tsc -p test/types/tsconfig.json",
     "test:unit": "babel-node test/unit/runner.js",
-    "test:e2e": "node test/e2e/runner.js"
+    "test:e2e": "babel-node test/e2e/runner.js"
   },
   "repository": {
     "type": "git",
