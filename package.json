@@ -62,6 +62,7 @@
     "cross-spawn": "^5.1.0",
     "http-server": "^0.10.0",
     "jasmine": "^2.8.0",
+    "jasmine-spec-reporter": "^4.2.1",
     "nightwatch": "^0.9.16",
     "selenium-server": "^3.6.0",
     "ts-loader": "^3.0.3",
