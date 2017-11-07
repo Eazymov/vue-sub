@@ -8246,8 +8246,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_class_component__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_class_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_class_component__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_project__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_project___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_project__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_package__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_package___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_package__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8260,8 +8260,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-__WEBPACK_IMPORTED_MODULE_0_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_2_project___default.a);
-const observable = new __WEBPACK_IMPORTED_MODULE_2_project___default.a();
+__WEBPACK_IMPORTED_MODULE_0_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_2_package___default.a);
+const observable = new __WEBPACK_IMPORTED_MODULE_2_package___default.a();
 const CLICK = 'CLICK';
 let App = class App extends __WEBPACK_IMPORTED_MODULE_0_vue__["default"] {
     constructor() {
@@ -8273,11 +8273,11 @@ let App = class App extends __WEBPACK_IMPORTED_MODULE_0_vue__["default"] {
     }
 };
 __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_2_project__["Action"])(CLICK),
+    Object(__WEBPACK_IMPORTED_MODULE_2_package__["Action"])(CLICK),
     __metadata("design:type", Function)
 ], App.prototype, "handleClick", void 0);
 __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_2_project__["Subscribe"])(CLICK),
+    Object(__WEBPACK_IMPORTED_MODULE_2_package__["Subscribe"])(CLICK),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)

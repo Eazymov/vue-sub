@@ -1,5 +1,5 @@
 import Vue, { Component } from 'vue';
-import VueSub, { Action, Subscribe, Once } from 'project';
+import VueSub, { Action, Subscribe, Once } from 'package';
 
 const actions = {
   LOG: 'LOG',

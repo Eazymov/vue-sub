@@ -1,4 +1,4 @@
-import VueSub from 'project';
+import VueSub from 'package';
 
 describe('VueSub.subscribe', function () {
 

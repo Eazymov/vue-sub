@@ -1,6 +1,7 @@
-const path = require('path');
-const spawn = require('cross-spawn');
-const httpServer = require('http-server');
+import path from 'path';
+import spawn from 'cross-spawn';
+import httpServer from 'http-server';
+
 const server = httpServer.createServer({
   root: path.resolve(__dirname, '../../'),
 });

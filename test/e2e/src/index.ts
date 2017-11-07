@@ -1,6 +1,6 @@
 import Vue, { CreateElement } from 'vue';
 import Component from 'vue-class-component';
-import VueSub, { Action, Subscribe } from 'project';
+import VueSub, { Action, Subscribe } from 'package';
 
 Vue.use(VueSub);
 
