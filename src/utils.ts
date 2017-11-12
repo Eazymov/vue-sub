@@ -1,5 +1,4 @@
-import VueSub from './constructor';
-import { Observers, Handler, Subscribers, Subscriber } from 'types';
+import { Observers, Handler } from 'types';
 
 type ForEachHandler = (element?: any, index?: number) => any;
 type FilterHandler = (element?: any, index?: number) => boolean;
@@ -41,28 +40,10 @@ const every = (array: Array<any>, checker: FilterHandler): boolean => {
   return true;
 }
 
-const bindSubscribers = (component: any): boolean => {
-  if (typeof component.getSubscribers !== 'function') return false; 
-  
-  const subscribers: Subscribers = component.getSubscribers();
-  const $observable: VueSub = component.$observable;
-  const methods: Array<string> = Object.keys(subscribers);
-  
-  forEach(methods, (method: string) => {
-    const { once, action }: Subscriber = subscribers[method];
-    const which: string = once ? 'once' : 'subscribe';
-
-    $observable[which](action, component[method]);
-  });
-
-  return delete component.getSubscribers;
-}
-
 export {
   isObject,
   isArray,
   isValidObservers,
   forEach,
   every,
-  bindSubscribers,
 };

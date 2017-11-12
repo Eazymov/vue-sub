@@ -3,7 +3,9 @@ import { SpecReporter } from 'jasmine-spec-reporter';
 
 const jasmine = new Jasmine();
 const reporter = new SpecReporter({
-  showPending: true,
+  spec: {
+    displayPending: true,
+  },
 });
 
 jasmine.env.clearReporters();

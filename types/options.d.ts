@@ -14,15 +14,6 @@ export type Observers = {
   [key: string]: Handler[];
 }
 
-export type Subscriber = {
-  once: boolean;
-  action: ActionType;
-}
-
-export type Subscribers = {
-  [key: string]: Subscriber;
-}
-
 export type Methods = {
   [key: string]: (...args: any[]) => any;
 }

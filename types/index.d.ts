@@ -6,8 +6,6 @@ export {
   ActionType,
   Handler,
   Observers,
-  Subscriber,
-  Subscribers,
   Methods,
   VueSubOptions,
 } from './options';

@@ -1,6 +1,6 @@
 
 module.exports = {
-  "src_folders" : ["test/e2e/specs"],
+  "src_folders" : ["test/e2e/spec"],
   "output_folder" : false,
   "custom_commands_path" : "",
   "custom_assertions_path" : "",

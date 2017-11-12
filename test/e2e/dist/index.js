@@ -8617,33 +8617,32 @@ exports.Action = exports.Once = exports.Subscribe = undefined;
 
 var _vueClassComponent = __webpack_require__(3);
 
-var addSubscriber = function addSubscriber(subscriber) {
-    return (0, _vueClassComponent.createDecorator)(function (target, prop) {
-        var methods = target.methods || {};
-        var getSubscribers = methods.getSubscribers;
-        var subscribers = getSubscribers ? getSubscribers() : {};
-        subscribers[prop] = subscriber;
-        methods.getSubscribers = function () {
-            return subscribers;
+var addSubscriber = function addSubscriber(action, once) {
+    return (0, _vueClassComponent.createDecorator)(function (target, property) {
+        var purpose = once ? 'once' : 'subscribe';
+        var created = target.created;
+        var subscriber = function subscriber() {
+            this.$observable[purpose](action, this[property]);
         };
+        if (!created) {
+            target.created = subscriber;
+        } else if (created.length) {
+            target.created.push(subscriber);
+        } else {
+            target.created = [subscriber, created];
+        }
     });
 };
 var Subscribe = function Subscribe(action) {
-    return addSubscriber({
-        once: false,
-        action: action
-    });
+    return addSubscriber(action, false);
 };
 var Once = function Once(action) {
-    return addSubscriber({
-        once: true,
-        action: action
-    });
+    return addSubscriber(action, true);
 };
 var Action = function Action(action) {
-    return (0, _vueClassComponent.createDecorator)(function (component, prop) {
+    return (0, _vueClassComponent.createDecorator)(function (component, property) {
         var methods = component.methods || {};
-        methods[prop] = function (params) {
+        methods[property] = function (params) {
             this.$observable.fire(action, params);
         };
     });
@@ -8760,9 +8759,6 @@ var VueSub = function () {
                     } else if (options.parent && options.parent.$observable) {
                         this.$observable = options.parent.$observable;
                     }
-                },
-                created: function created() {
-                    (0, _utils.bindSubscribers)(this);
                 }
             });
         }
@@ -8818,27 +8814,11 @@ var every = function every(array, checker) {
     }
     return true;
 };
-var bindSubscribers = function bindSubscribers(component) {
-    if (typeof component.getSubscribers !== 'function') return false;
-    var subscribers = component.getSubscribers();
-    var $observable = component.$observable;
-    var methods = Object.keys(subscribers);
-    forEach(methods, function (method) {
-        var _subscribers$method = subscribers[method],
-            once = _subscribers$method.once,
-            action = _subscribers$method.action;
-
-        var which = once ? 'once' : 'subscribe';
-        $observable[which](action, component[method]);
-    });
-    return delete component.getSubscribers;
-};
 exports.isObject = isObject;
 exports.isArray = isArray;
 exports.isValidObservers = isValidObservers;
 exports.forEach = forEach;
 exports.every = every;
-exports.bindSubscribers = bindSubscribers;
 
 /***/ })
 /******/ ]);

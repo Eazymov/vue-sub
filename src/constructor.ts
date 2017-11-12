@@ -1,10 +1,5 @@
 import Vue, { ComponentOptions } from 'vue';
-import {
-  isObject,
-  forEach,
-  isValidObservers,
-  bindSubscribers
-} from './utils';
+import { isObject, forEach, isValidObservers } from './utils';
 import { ActionType, VueSubOptions, Observers, Handler, } from 'types';
 
 class VueSub {
@@ -26,9 +21,6 @@ class VueSub {
         } else if (options.parent && options.parent.$observable) {
           this.$observable = options.parent.$observable;
         }
-      },
-      created (): void {
-        bindSubscribers(this);
       },
     });
   }
