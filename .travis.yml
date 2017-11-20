@@ -7,6 +7,9 @@ language: node_js
 node_js:
  - "7"
 
+env:
+ - NODE_ENV=production
+
 cache:
   directories:
    - node_modules
@@ -20,7 +23,10 @@ before_install:
  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
  - sudo dpkg -i google-chrome*.deb
 
+install:
+ - npm install
+ - npm install -g cross-env webpack npm-run-all
+
 script:
- - jdk_switcher use oraclejdk8
+ - npm run build
  - npm test
- 

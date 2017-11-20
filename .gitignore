@@ -6,6 +6,10 @@ yarn-debug.log*
 yarn-error.log*
 selenium-debug.log*
 
+# Dev things
+dist/
+lib/
+
 # Runtime data
 pids
 *.pid
