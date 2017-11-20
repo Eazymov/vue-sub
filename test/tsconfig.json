@@ -3,23 +3,27 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": "./",
-    "module": "es2015",
+    "baseUrl": "../",
+    "module": "commonjs",
     "target": "ESNext",
     "lib": ["es7", "dom"],
     "paths": {
-      "package": ["../../"]
+      "package": ["./"],
+      "types": ["./types"],
+      "src": ["./src"]
     },
     "strict": true,
     "sourceMap": false,
     "noEmit": true,
+    "allowJs": true,
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true
   },
-  "files": [
-    "./index.ts"
+  "include": [
+    "./types/**/*",
+    "./unit/spec/**/*"
   ]
 }

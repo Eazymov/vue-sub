@@ -4,11 +4,15 @@ import { ActionType, VueSubOptions, Observers, Handler, } from 'types';
 
 class VueSub {
   /**
-   * Public static methods
+   * Public static properties
    */
 
   public static installed = false;
     
+  /**
+   * Public static methods
+   */
+
   public static install (vm: typeof Vue) {
     if (VueSub.installed) return;
   
@@ -88,7 +92,7 @@ class VueSub {
     return this.subscribe(action, selfDestroying);
   }
 
-  public fire (action: ActionType, params: any): boolean {
+  public fire (action: ActionType, params?: any): boolean {
     const actionHandlers: Handler[] = this.observers[action];
 
     if (!actionHandlers) return false;

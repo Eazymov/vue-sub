@@ -1,23 +1,23 @@
 import { Observers, Handler } from 'types';
 
-type ForEachHandler = (element?: any, index?: number) => any;
-type FilterHandler = (element?: any, index?: number) => boolean;
+type ForEachHandler = (element: any, index: number) => any;
+type FilterHandler = (element: any, index: number) => boolean;
 
-const isObject = (object: any): boolean => {
-  return typeof object === 'object' && !object.reduce;
+const isObject = (arg: any): arg is Object => {
+  return typeof arg === 'object' && !arg.reduce;
 }
 
-const isArray = (array: Array<any>): boolean => {
-  return !!array.reduce;
+const isArray = (arg: any): arg is Array<any> => {
+  return !!arg.reduce;
 }
 
-const isValidObservers = (observers: Observers): boolean => {
-  if (!isObject(observers)) return false;
+const isValidObservers = (arg: any): arg is Observers => {
+  if (!isObject(arg)) return false;
 
   return every(
-    Object.keys(observers),
+    Object.keys(arg),
     (key: string) => {
-      const handlers: Handler[] = observers[key];
+      const handlers: Handler[] = arg[key];
 
       if (!isArray(handlers)) return false;
 
@@ -46,4 +46,4 @@ export {
   isValidObservers,
   forEach,
   every,
-};
+}

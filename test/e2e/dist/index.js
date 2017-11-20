@@ -8721,6 +8721,10 @@ var VueSub = function () {
         var observers = props.observers || {};
         this.setObservers(observers);
     }
+    /**
+     * Public static methods
+     */
+
 
     _createClass(VueSub, [{
         key: 'subscribe',
@@ -8801,7 +8805,7 @@ var VueSub = function () {
     return VueSub;
 }();
 /**
- * Public static methods
+ * Public static properties
  */
 
 
@@ -8821,16 +8825,16 @@ Object.defineProperty(exports, "__esModule", {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var isObject = function isObject(object) {
-    return (typeof object === 'undefined' ? 'undefined' : _typeof(object)) === 'object' && !object.reduce;
+var isObject = function isObject(arg) {
+    return (typeof arg === 'undefined' ? 'undefined' : _typeof(arg)) === 'object' && !arg.reduce;
 };
-var isArray = function isArray(array) {
-    return !!array.reduce;
+var isArray = function isArray(arg) {
+    return !!arg.reduce;
 };
-var isValidObservers = function isValidObservers(observers) {
-    if (!isObject(observers)) return false;
-    return every(Object.keys(observers), function (key) {
-        var handlers = observers[key];
+var isValidObservers = function isValidObservers(arg) {
+    if (!isObject(arg)) return false;
+    return every(Object.keys(arg), function (key) {
+        var handlers = arg[key];
         if (!isArray(handlers)) return false;
         return every(handlers, function (handler) {
             return typeof handler === 'function';

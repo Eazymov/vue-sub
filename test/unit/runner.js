@@ -1,4 +1,4 @@
-import Jasmine from 'jasmine';
+import * as Jasmine from 'jasmine';
 import { SpecReporter } from 'jasmine-spec-reporter';
 
 const jasmine = new Jasmine();

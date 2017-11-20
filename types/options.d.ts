@@ -2,20 +2,20 @@
 declare global {
 
   interface PropertyDescriptor {
-    initializer?: (...args: any[]) => any;
+    initializer?: Function;
   }
 }
 
 export type ActionType = string|symbol;
 
-export type Handler = (...args: any[]) => any;
+export type Handler = Function;
 
 export type Observers = {
   [key: string]: Handler[];
 }
 
 export type Methods = {
-  [key: string]: (...args: any[]) => any;
+  [key: string]: Function;
 }
 
 export interface VueSubOptions {
