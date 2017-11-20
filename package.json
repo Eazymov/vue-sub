@@ -19,7 +19,7 @@
   ],
   "scripts": {
     "dev": "tsc --watch",
-    "build": "build:prod && npm run build:test",
+    "build": "npm run build:prod && npm run build:test",
     "build:types": "tsc -p ./tsconfig.json",
     "build:prod": "cross-env NODE_ENV=production npm run build:types && webpack",
     "build:test": "cross-env NODE_ENV=test webpack",
