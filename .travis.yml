@@ -7,9 +7,6 @@ language: node_js
 node_js:
  - "7"
 
-env:
- - NODE_ENV=production
-
 before_install:
  - rm -rf node_modules
  - npm install -g cross-env dotenv webpack npm-run-all typescript ts-node
