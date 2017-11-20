@@ -29,7 +29,7 @@ const Once = (action: ActionType) => {
 }
 
 const Action = (action: ActionType) => {
-  return createDecorator((component, property: PropertyKey): void => {
+  return createDecorator((component: any, property: PropertyKey): void => {
     const methods: Methods = component.methods || {};
 
     methods[property] = function (this: Vue, params: any) {

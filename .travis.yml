@@ -25,6 +25,8 @@ before_install:
 
 install:
  - npm install
+ - npm install vue vue-class-component
+ - npm install vue vue-class-component -S
  - npm install -g cross-env webpack npm-run-all typescript
 
 script:
