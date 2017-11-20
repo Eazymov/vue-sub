@@ -15,6 +15,7 @@ cache:
    - node_modules
 
 before_install:
+ - npm remove webpack -g
  - npm install -g cross-env webpack npm-run-all typescript ts-node
  - export CHROME_BIN=/usr/bin/google-chrome
  - export DISPLAY=:99.0
