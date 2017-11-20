@@ -10,13 +10,10 @@ node_js:
 env:
  - NODE_ENV=production
 
-cache:
-  directories:
-   - node_modules
-
 before_install:
- - npm remove webpack -g
- - npm install -g cross-env webpack npm-run-all typescript ts-node
+ - rm -rf node_modules
+ - rm package-lock.json
+ - npm install -g cross-env npm-run-all typescript ts-node
  - export CHROME_BIN=/usr/bin/google-chrome
  - export DISPLAY=:99.0
  - sh -e /etc/init.d/xvfb start
