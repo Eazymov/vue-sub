@@ -12,7 +12,7 @@ env:
 
 before_install:
  - rm -rf node_modules
- - npm install -g cross-env webpack npm-run-all typescript ts-node
+ - npm install -g cross-env dotenv webpack npm-run-all typescript ts-node
  - export CHROME_BIN=/usr/bin/google-chrome
  - export DISPLAY=:99.0
  - sh -e /etc/init.d/xvfb start
