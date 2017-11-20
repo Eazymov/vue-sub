@@ -9,6 +9,7 @@ selenium-debug.log*
 # Dev things
 dist/
 lib/
+test/e2e/dist/
 
 # Runtime data
 pids
