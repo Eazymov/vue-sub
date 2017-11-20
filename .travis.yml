@@ -12,7 +12,6 @@ env:
 
 before_install:
  - rm -rf node_modules
- - rm package-lock.json
  - npm install -g cross-env npm-run-all typescript ts-node
  - export CHROME_BIN=/usr/bin/google-chrome
  - export DISPLAY=:99.0
