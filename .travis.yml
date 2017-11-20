@@ -23,7 +23,7 @@ before_install:
 
 install:
  - npm install
- - npm install vue vue-class-component -S
+ - npm install dotenv vue vue-class-component -S
 
 script:
  - npm run build
