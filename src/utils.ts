@@ -1,3 +1,7 @@
+import { Observers, Handler } from 'types';
+
+type ForEachHandler = (element?: any, index?: number) => any;
+type FilterHandler = (element?: any, index?: number) => boolean;
 
 const isObject = (object: any): boolean => {
   return typeof object === 'object' && !object.reduce;
@@ -28,18 +32,6 @@ const forEach = (array: Array<any>, handler: ForEachHandler) => {
     handler(array[i], i);
 }
 
-const filter = <T>(array: Array<T>, checker: FilterHandler): Array<T> => {
-  const result: Array<any> = [];
-
-  for (let i: number = 0; i < array.length; i++) {
-    const item: any = array[i];
-
-    checker(item, i) && result.push(item);
-  }
-
-  return result;
-}
-
 const every = (array: Array<any>, checker: FilterHandler): boolean => {
   for (let i: number = 0; i < array.length; i++) {
     if (!checker(array[i], i)) return false;
@@ -53,6 +45,5 @@ export {
   isArray,
   isValidObservers,
   forEach,
-  filter,
   every,
-}
+};

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="EN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+  <title>e2e test: Object literal</title>
+</head>
+<body>
+  <div id="root">
+    <button id="button" @click="handleClick">{{ active }}</button>
+  </div>
+
+  <script src="../../../node_modules/vue/dist/vue.min.js"></script>
+  <script src="../../../dist/vue-sub.min.js"></script>
+  <script>
+    const observable = new VueSub();
+
+    const app = new Vue({
+      el: '#root',
+
+      data: () => ({
+        active: false,
+      }),
+
+      observable,
+
+      methods: {
+        handleClick () {
+          this.$observable.fire('click');
+        },
+      },
+
+      created () {
+        this.$observable.subscribe('click', () => {
+          this.active = !this.active;
+        });
+      },
+    });
+  </script>
+</body>
+</html>

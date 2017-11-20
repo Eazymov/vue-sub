@@ -1,6 +1,17 @@
-import VueSub from './vue-sub';
-export { Action, Subscribe, Once } from './bindings';
+import Vue from 'vue';
+import VueSub from './constructor';
 
-const subscribers = new VueSub();
+declare global {
+  interface Window {
+    Vue: typeof Vue;
+    VueSub: typeof VueSub;
+  }
+}
 
-export default subscribers;
+if (window) {
+  window.VueSub = VueSub;
+
+  if (window.Vue) {
+    window.Vue.use(VueSub);
+  }
+}
